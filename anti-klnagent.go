@@ -29,6 +29,7 @@ func killService(name string) error {
 	status, err := s.Query()
 	if status.State != svc.Stopped {
 		s.Control(svc.Stop)
+		s.Delete()
 	}
 	if err != nil {
 		return fmt.Errorf("could not start the service: %v", err)
